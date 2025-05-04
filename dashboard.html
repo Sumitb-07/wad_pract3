@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Dashboard</h2>
+  <p id="user_welcome"></p>
+  <p id="user_email"></p>
+  <button onclick="logout()">Log Out</button>
+
+  <script>
+    function getDetails() {
+      const name = localStorage.getItem("name");
+      const email = localStorage.getItem("email");
+
+      if (!name || !email) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("user_welcome").innerText = "Welcome " + name;
+      document.getElementById("user_email").innerText = "Email: " + email;
+    }
+
+    function logout() {
+      localStorage.removeItem("name");
+      localStorage.removeItem("email");
+      window.location.href = "registration.html";
+    }
+
+    window.onload = getDetails;
+  </script>
+</body>
+</html>
